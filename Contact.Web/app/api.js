@@ -1,27 +1,31 @@
 ﻿angular.module("app").service("api", [
-    "$q",
-    function ($q) {
-
-        var contacts = [
-            { Id: 1, FirstName: "Paul", LastName: "Wheeler", Email: "paul@paulwheeler.com" },
-            { Id: 2, FirstName: "Jon", LastName: "Wheeler", Email: "jdwheeler@gmail.com" }
-        ];
-
-        return {
-            QueryContacts: function () {
-                var q = $q.defer();
-                q.resolve(contacts);
-                return q.promise;
-            },
-            GetContact: function (params) {
-                var q = $q.defer();
-                var contact = {};
-                angular.forEach(contacts, function(c) {
-                    if (c.Id === params.Id) contact = c;
-                });
-                q.resolve(contact);
-                return q.promise;
-            }
+    "jsonRpc",
+    function (jsonRpc) {
+        var self = {};
+        self.DeleteContact = function(params) {
+            return jsonRpc.send("DeleteContact", params);
         };
+        self.GetContact = function(params) {
+            return jsonRpc.send("GetContact", params);
+        };
+        self.QueryContacts = function(params) {
+            return jsonRpc.send("QueryContacts", params);
+        };
+        self.SaveContact = function(params) {
+            return jsonRpc.send("SaveContact", params);
+        };
+        self.DeleteUser = function(params) {
+            return jsonRpc.send("DeleteUser", params);
+        };
+        self.GetUser = function(params) {
+            return jsonRpc.send("GetUser", params);
+        };
+        self.QueryUsers = function(params) {
+            return jsonRpc.send("QueryUsers", params);
+        };
+        self.SaveUser = function(params) {
+            return jsonRpc.send("SaveUser", params);
+        };
+        return self;
     }
 ]);

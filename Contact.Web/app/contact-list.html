@@ -3,7 +3,7 @@
         <a ui-sref="contacts.detail({id:0})" ng-click="vm.select(0)">Create Contact</a>
     </p>
     <ul class="list-group">
-        <li ng-repeat="contact in vm.contacts" class="list-group-item" ng-class="{active:contact.Id==vm.selectedId}">
+        <li ng-repeat="contact in vm.contacts.Items" class="list-group-item" ng-class="{active:contact.Id==vm.selectedId}">
             <a ui-sref="contacts.detail({id:contact.Id})" ng-click="vm.select(contact.Id)">
                 <h4 class="list-group-item-heading">
                     {{ contact.FirstName }} {{ contact.LastName }}
