@@ -6,10 +6,12 @@
 
        vm.authenticate = function() {
            return api.login(vm.user, function () {
-               $state.go("home");
+               $state.go("contacts");
            }, function (err) {
                alert("Login Failed: " + err.message);
            });
        }
+
+       return vm;
    }
 ]);

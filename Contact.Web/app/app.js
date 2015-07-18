@@ -15,18 +15,37 @@ app.config([
             function () { return true; }
         ];
 
-        // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
         $urlRouterProvider
-            .otherwise("/");
-
-        $stateProvider.state("home", {
-            url: "/",
-            templateUrl: "/app/app.html"
-        });
+            .otherwise("/contacts");
 
         $stateProvider.state("login", {
             url: "/login",
             templateUrl: "/app/login.html"
+        });
+
+        $stateProvider.state("contacts", {
+            url: "/contacts",
+            templateUrl: "/app/contacts.html",
+            'abstract': true,
+            resolve: { authenticate: authenticate }
+        });
+
+        $stateProvider.state("contacts.noselection", {
+            url: "",
+            templateUrl: "/app/no-selection.html",
+            resolve: { authenticate: authenticate }
+        });
+
+        $stateProvider.state("contacts.detail", {
+            url: "/:id",
+            templateUrl: "/app/contact-detail.html",
+            resolve: { authenticate: authenticate }
+        });
+
+        $stateProvider.state("users", {
+            url: "/users",
+            templateUrl: "/app/users.html",
+            resolve: { authenticate: authenticate }
         });
     }
 ]);

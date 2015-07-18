@@ -1,0 +1,39 @@
+﻿<div ng-controller="contactDetail as vm">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Contact</h3>
+        </div>
+        <div class="panel-body">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">First Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="first name" class="form-control" ng-model="vm.contact.FirstName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Last Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="last name" class="form-control" ng-model="vm.contact.LastName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="email" class="form-control" ng-model="vm.contact.Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Phone Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="phone number" class="form-control" ng-model="vm.contact.PhoneNumber">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="button-bar">
+        <button class="btn btn-danger" ng-click="vm.delete()" ng-disabled="!vm.canDelete()">Delete</button>
+        <button class="btn btn-success" ng-click="vm.save()" ng-disabled="!vm.canSave()">Save</button>
+    </div>
+</div>
