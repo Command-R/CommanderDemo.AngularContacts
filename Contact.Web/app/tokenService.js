@@ -51,14 +51,16 @@ angular.module("app").config([
 ]);
 
 angular.module("app").run([
-    "$rootScope", "$state", "$q", "tokenService",
-    function ($rootScope, $state, $q, tokenService) {
-        $rootScope.$on("$stateChangeStart", function (event, toState) {
-            if (toState.name !== "login" && !tokenService.isAuthenticated()) {
-                event.preventDefault();
+    "$rootScope", "$state", "tokenService",
+    function ($rootScope, $state, tokenService) {
+        $rootScope.$on("$locationChangeSuccess", function (event, newUrl) {
+            if (!endsWith(newUrl, "/login") && !tokenService.isAuthenticated()) {
                 $state.go("login");
-                return $q.defer().promise;
             }
         });
+
+        function endsWith(str, suffix) {
+            return str && str.indexOf(suffix, str.length - suffix.length) !== -1;
+        }
     }
 ]);

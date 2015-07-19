@@ -12,7 +12,7 @@ app.config([
     function ($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider
-            .otherwise("/login");
+            .otherwise("/contacts");
 
         $stateProvider.state("login", {
             url: "/login",
