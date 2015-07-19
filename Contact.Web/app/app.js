@@ -11,12 +11,8 @@ app.config([
     "$stateProvider", "$urlRouterProvider",
     function ($stateProvider, $urlRouterProvider) {
 
-        var authenticate = [
-            function () { return true; }
-        ];
-
         $urlRouterProvider
-            .otherwise("/contacts");
+            .otherwise("/login");
 
         $stateProvider.state("login", {
             url: "/login",
@@ -26,26 +22,22 @@ app.config([
         $stateProvider.state("contacts", {
             url: "/contacts",
             templateUrl: "/app/contacts.html",
-            'abstract': true,
-            resolve: { authenticate: authenticate }
+            'abstract': true
         });
 
         $stateProvider.state("contacts.noselection", {
             url: "",
-            templateUrl: "/app/no-selection.html",
-            resolve: { authenticate: authenticate }
+            templateUrl: "/app/no-selection.html"
         });
 
         $stateProvider.state("contacts.detail", {
             url: "/:id",
-            templateUrl: "/app/contact-detail.html",
-            resolve: { authenticate: authenticate }
+            templateUrl: "/app/contact-detail.html"
         });
 
         $stateProvider.state("users", {
             url: "/users",
-            templateUrl: "/app/users.html",
-            resolve: { authenticate: authenticate }
+            templateUrl: "/app/users.html"
         });
     }
 ]);

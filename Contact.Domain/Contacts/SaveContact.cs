@@ -2,7 +2,6 @@
 using CommandR;
 using CommandR.Authentication;
 using CommandR.Extensions;
-using CommandR.Services;
 using MediatR;
 
 namespace Contact.Domain

@@ -133,7 +133,9 @@
     <Content Include="app\login.html" />
     <Content Include="app\login.js" />
     <Content Include="app\nav.html" />
+    <Content Include="app\nav.js" />
     <Content Include="app\no-selection.html" />
+    <Content Include="app\tokenService.js" />
     <Content Include="app\users.html" />
     <Content Include="assets\ui-bootstrap-tpls.js" />
     <Content Include="assets\angular-ui-router.js" />

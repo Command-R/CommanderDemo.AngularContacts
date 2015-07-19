@@ -2,6 +2,9 @@
     "jsonRpc",
     function (jsonRpc) {
         var self = {};
+        self.LoginUser = function(params) {
+            return jsonRpc.send("LoginUser", params);
+        };
         self.DeleteContact = function(params) {
             return jsonRpc.send("DeleteContact", params);
         };

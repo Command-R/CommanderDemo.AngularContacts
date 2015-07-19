@@ -53,3 +53,10 @@ li.list-group-item {
     li.list-group-item.active > a {
         color: white;
     }
+
+.ng-hide { /* not sure why I had to add this since it should be in Angular */
+    display: block !important;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}

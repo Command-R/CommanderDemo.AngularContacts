@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\LoginUser.cs" />
     <Compile Include="Contacts\DeleteContact.cs" />
     <Compile Include="Contacts\GetContact.cs" />
     <Compile Include="Contacts\QueryContacts.cs" />

@@ -17,17 +17,11 @@ namespace Contact.Domain
     /// api.tt example to auto-generate calls to commands for javascript.
     /// </summary>
     [Authorize]
-    public class QueryUsers : IQuery, IPageable, IRequest<QueryUsers.Response>
+    public class QueryUsers : IQuery, IPageable, IRequest<PagedList<QueryUsers.UserInfo>>
     {
         public bool Inactive { get; set; }
         public int? PageNumber { get; set; }
         public int? PageSize { get; set; }
-
-        public class Response
-        {
-            public QueryUsers Query { get; set; }
-            public PagedList<UserInfo> Result { get; set; }
-        };
 
         public class UserInfo
         {
@@ -36,7 +30,7 @@ namespace Contact.Domain
             public bool IsActive { get; set; }
         };
 
-        internal class Handler : IRequestHandler<QueryUsers, Response>
+        internal class Handler : IRequestHandler<QueryUsers, PagedList<UserInfo>>
         {
             private readonly ContactDb _db;
 
@@ -45,7 +39,7 @@ namespace Contact.Domain
                 _db = db;
             }
 
-            public Response Handle(QueryUsers cmd)
+            public PagedList<UserInfo> Handle(QueryUsers cmd)
             {
                 var query = _db.Users.AsQueryable();
 
@@ -54,7 +48,7 @@ namespace Contact.Domain
                     query = query.Where(x => x.IsActive);
                 }
 
-                var result = query
+                return query
                     .Select(x => new UserInfo
                     {
                         Id = x.Id,
@@ -63,12 +57,6 @@ namespace Contact.Domain
                     })
                     .OrderBy(x => x.Id)
                     .ToPagedList(cmd, 25, 100);
-
-                return new Response
-                {
-                    Query = cmd,
-                    Result = result,
-                };
             }
         };
     };
